@@ -12,10 +12,12 @@ var addProductBtn = document.getElementById("addProductBtn");
 
 var updateProductBtn = document.getElementById("updateProductBtn");
 
-if (localStorage.getItem("productList") == null) {
+var productListName = "productList";
+
+if (localStorage.getItem(productListName) == null) {
   prodcutList = [];
 } else {
-  prodcutList = JSON.parse(localStorage.getItem("productList"));
+  prodcutList = JSON.parse(localStorage.getItem(productListName));
   displayProduct(prodcutList);
 }
 
@@ -28,8 +30,8 @@ function addProduct() {
   };
   prodcutList.push(product);
   displayProduct(prodcutList);
-  localStorage.setItem("productList", JSON.stringify(prodcutList));
-  clearForm();
+  localStorage.setItem(productListName, JSON.stringify(prodcutList));
+  updateFormValue();
 }
 
 function displayProduct(products) {
@@ -55,25 +57,22 @@ function displayProduct(products) {
   }
   document.getElementById("tBody").innerHTML = cartona;
 }
-function clearForm() {
-  productName.value = "";
-  productPrice.value = "";
-  productModel.value = "";
-  productDescription.value = "";
+function updateFormValue(flag) {
+  productName.value = flag ? flag.name : "";
+  productPrice.value = flag ? flag.price : "";
+  productModel.value = flag ? flag.model : "";
+  productDescription.value = flag ? flag.description : "";
 }
 
 function getUpdatedProduct(index) {
   addProductBtn.classList.add("d-none");
   updateProductBtn.classList.replace("d-none", "d-block");
-  productName.value = prodcutList[index].name;
-  productPrice.value = prodcutList[index].price;
-  productModel.value = prodcutList[index].model;
-  productDescription.value = prodcutList[index].description;
+  updateFormValue(prodcutList[index]);
 }
 
 function deleteProduct(index) {
   prodcutList.splice(index, 1);
-  localStorage.setItem("productList", JSON.stringify(prodcutList));
+  localStorage.setItem(productListName, JSON.stringify(prodcutList));
   displayProduct(prodcutList);
 }
 
