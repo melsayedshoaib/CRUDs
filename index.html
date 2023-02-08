@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="w-75 mx-auto py-5">
+            <h1 class="mb-5">Product Management System</h1>
+            <div class="form-group mb-3">
+                <label for="productName">Product Name</label>
+                <input type="text" class="form-control mb-2" id="productName" placeholder="Enter Product Name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="productPrice">Product Price</label>
+                <input type="number" class="form-control mb-2" id="productPrice" placeholder="Enter Product Price">
+            </div>
+            <div class="form-group mb-3">
+                <label for="productModel">Product Model</label>
+                <input type="text" class="form-control mb-2" id="productModel" placeholder="Enter Product Model">
+            </div>
+            <div class="form-group mb-3">
+                <label for="productDescription">Product Description</label>
+                <textarea name="productDescription" class = "form-control" id="productDescription"></textarea>
+            </div>
+            <button onclick="addProduct()" class="btn btn-primary">Add Product</button>
+        </div>
+        <div class="w-75 mx-auto py-5">
+            <h4>Search</h4>
+            <input oninput="searchByName(this.value)" type="text" name="search" class="form-control">
+        </div>
+        <table class="table text-white text-center w-75 mx-auto
+        ">
+            <thead>
+                <th>Index</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Model</th>
+                <th>Product Description</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </thead>
+            <tbody id="tBody"></tbody>
+        </table>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
