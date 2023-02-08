@@ -22,16 +22,20 @@ if (localStorage.getItem(productListName) == null) {
 }
 
 function addProduct() {
-  var product = {
-    name: productName.value,
-    price: productPrice.value,
-    description: productDescription.value,
-    model: productModel.value,
-  };
-  prodcutList.push(product);
-  displayProduct(prodcutList);
-  localStorage.setItem(productListName, JSON.stringify(prodcutList));
-  updateFormValue();
+  if (validateProductName()) {
+    var product = {
+      name: productName.value,
+      price: productPrice.value,
+      description: productDescription.value,
+      model: productModel.value,
+    };
+    prodcutList.push(product);
+    displayProduct(prodcutList);
+    localStorage.setItem(productListName, JSON.stringify(prodcutList));
+    updateFormValue();
+  } else {
+    alert("Invalid Name");
+  }
 }
 
 function displayProduct(products) {
@@ -97,4 +101,9 @@ function searchByName(term) {
     }
   }
   displayProduct(foundedItems);
+}
+
+function validateProductName() {
+  var regex = /^[A-Z][a-z]{3,8}$/;
+  return regex.test(productName.value);
 }
